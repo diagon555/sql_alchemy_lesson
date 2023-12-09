@@ -1,5 +1,8 @@
 import asyncio
-from queries.orm import create_tables, insert_data
+from queries.core import Core, AsyncCore
+from queries.orm import ORM
 
-create_tables()
-asyncio.run(insert_data())
+ORM.create_tables()
+ORM.insert_employers()
+ORM.update_employers()
+ORM.select_employers()

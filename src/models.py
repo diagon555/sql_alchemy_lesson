@@ -18,6 +18,9 @@ class EmployerOrm(Base):
     id: Mapped[intpk]
     username: Mapped[str]
 
+    def __repr__(self):
+        return self.username
+
 
 class Workload(enum.Enum):
     parttime = 'parttime'
@@ -39,6 +42,12 @@ class ResumeOrm(Base):
 metadata_obj = MetaData()
 workers_table = Table(
     'employers',
+    metadata_obj,
+    Column('id', Integer, primary_key=True),
+    Column('username', String),
+)
+resumes_table = Table(
+    'resumes',
     metadata_obj,
     Column('id', Integer, primary_key=True),
     Column('username', String),
