@@ -1,13 +1,16 @@
-import asyncio
 from sqlalchemy import text, insert
 
-from database import engine, engine_async
-from models import metadata_obj, workers_table
+from models import metadata_obj
+from database import session_factory, engine, engine_async
+
+from src.models import workers_table
 
 
 def create_tables():
+    engine.echo = False
     metadata_obj.drop_all(engine)
     metadata_obj.create_all(engine)
+    engine.echo = True
 
 # with engine.begin() as conn:
 #     res = conn.execute(text('select 1,2,3 union select 3,4,5'))
